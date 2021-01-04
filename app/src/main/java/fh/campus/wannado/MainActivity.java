@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         emailId = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
         btnSignUp = findViewById(R.id.buttonSignUp);
-        tvSignIn = findViewById(R.id.textView);
+        tvSignIn = findViewById(R.id.textViewSignIn);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
