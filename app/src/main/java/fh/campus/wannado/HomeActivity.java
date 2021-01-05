@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -56,6 +57,10 @@ public class HomeActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
+                        case R.id.nav_search:
+                            Intent i = new Intent(HomeActivity.this, HomeActivity.class);
+                            startActivity(i);
+                            break;
                         case R.id.nav_star:
                             selectedFragment = new MyPostsFragment();
                             break;
@@ -69,8 +74,10 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = new ProfileFragment();
                             break;
                     }
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
+
 
                     return true;
                 }
