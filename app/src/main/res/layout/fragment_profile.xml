@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light">
 
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,8 +52,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="131dp"
         android:layout_marginTop="211dp"
-        android:textSize="20sp"
-        android:text="Username" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -50,8 +62,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="132dp"
         android:layout_marginTop="244dp"
-        android:textSize="20sp"
-        android:text="Email" />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
