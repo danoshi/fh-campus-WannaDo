@@ -11,8 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import java.util.ArrayList;
 
+import fh.campus.wannado.collections.users.PostCollection;
+import fh.campus.wannado.collections.users.PostDocument;
 import fh.campus.wannado.databinding.SearchFragmentBinding;
 
 public class SearchFragment  extends Fragment {
@@ -31,12 +35,24 @@ public class SearchFragment  extends Fragment {
     private void initRecyclerView(){
         ArrayList<String> items;
         items = new ArrayList<>();
-        items.add("First CardView Item");
+
+        PostCollection.getCurrentUser(task -> {
+            if(task.isSuccessful()){
+                DocumentSnapshot documentSnapshot = task.getResult();
+                if(documentSnapshot.exists()){
+                    PostDocument postDocument = PostCollection.getUserMessage(documentSnapshot);
+                    items.add(postDocument.getTitle());
+
+                }
+            }
+        });
+
+/*        items.add("First CardView Item");
         items.add("Second CardView Item");
         items.add("Third CardView Item");
         items.add("Fourth CardView Item");
         items.add("Fifth CardView Item");
-        items.add("Sixth CardView Item");
+        items.add("Sixth CardView Item");*/
 
         RecyclerView recyclerView = binding.postsRecyclerview;
 

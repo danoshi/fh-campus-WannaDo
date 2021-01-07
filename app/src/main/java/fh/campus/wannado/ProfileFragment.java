@@ -47,21 +47,21 @@ public class ProfileFragment extends Fragment {
         View view = binding.getRoot();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
+        setUserInfo();
+        setButtonsListeners();
+        setEmailNotVerifiedButton();
+        resetPasswordButton();
+        changeProfileImage();
         //Load picture when starting Profile fragment
-/*        StorageReference profileRef = storageReference.child("users/"+mFirebaseAuth.getCurrentUser().getUid()+"/profile.jpg");
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+mFirebaseAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 ImageView imageView = binding.imageViewProfileImage;
                 Picasso.get().load(uri).into(imageView);
             }
-        });*/
-
-        setUserInfo();
-        setButtonsListeners();
-        setEmailNotVerifiedButton();
-        resetPasswordButton();
-        changeProfileImage();
+        });
         return view;
     }
 
