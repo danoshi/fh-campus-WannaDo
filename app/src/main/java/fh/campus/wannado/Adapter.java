@@ -10,18 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import fh.campus.wannado.collections.users.PostDocument;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
-    private List<String> data;
+    private List<PostDocument> postDocuments;
 
-    Adapter(Context context, List<String> data){
+    Adapter(Context context, List<PostDocument> data){
         this.layoutInflater = LayoutInflater.from(context);
-        this.data = data;
-
+        postDocuments = data;
     }
+
 
     @NonNull
     @Override
@@ -32,15 +35,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        String title = data.get(position);
-        holder.textTitle.setText(title);
+        PostDocument currentItem = postDocuments.get(position);
+        holder.textTitle.setText(currentItem.getTitle());
+        holder.textDescription.setText(currentItem.getMessage());
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return postDocuments.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

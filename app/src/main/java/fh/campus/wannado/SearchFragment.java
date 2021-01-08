@@ -33,7 +33,7 @@ public class SearchFragment  extends Fragment {
 
 
     private void initRecyclerView(){
-        ArrayList<String> items;
+        ArrayList<PostDocument> items;
         items = new ArrayList<>();
 
         PostCollection.getCurrentUser(task -> {
@@ -41,7 +41,7 @@ public class SearchFragment  extends Fragment {
                 DocumentSnapshot documentSnapshot = task.getResult();
                 if(documentSnapshot.exists()){
                     PostDocument postDocument = PostCollection.getUserMessage(documentSnapshot);
-                    items.add(postDocument.getTitle());
+                    items.add(postDocument);
 
                 }
             }
