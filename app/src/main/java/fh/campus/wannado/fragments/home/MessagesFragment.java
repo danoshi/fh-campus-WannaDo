@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.fragments.home;
 
 
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import fh.campus.wannado.R;
 
 public class MessagesFragment extends Fragment {
 

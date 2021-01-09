@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.fragments.home;
 
 
 import android.content.Intent;
@@ -22,8 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
+import fh.campus.wannado.activities.HomeActivity;
 import fh.campus.wannado.databinding.FragmentAddpostsBinding;
 
 public class AddPostsFragment extends Fragment {

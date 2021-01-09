@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import fh.campus.wannado.R;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "TAG";

@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,9 +12,17 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import fh.campus.wannado.fragments.home.adapters.PostDocumentAdapter;
+import fh.campus.wannado.R;
+import fh.campus.wannado.fragments.home.AddPostsFragment;
+import fh.campus.wannado.fragments.home.MessagesFragment;
+import fh.campus.wannado.fragments.home.MyPostsFragment;
+import fh.campus.wannado.fragments.home.ProfileFragment;
+import fh.campus.wannado.fragments.home.SearchFragment;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private Adapter adapter;
+    private PostDocumentAdapter postDocumentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +80,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-
+                postDocumentAdapter.getFilter().filter(newText);
                 return false;
             }
         });

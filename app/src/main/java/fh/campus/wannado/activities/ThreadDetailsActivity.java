@@ -1,6 +1,5 @@
-package fh.campus.wannado;
+package fh.campus.wannado.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,16 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import fh.campus.wannado.collections.users.PostCollection;
+import fh.campus.wannado.R;
 
-public class onClickThreadActivity extends AppCompatActivity {
+public class ThreadDetailsActivity extends AppCompatActivity {
 
     TextView titleDb, MessageDb;
     EditText comment;
@@ -66,10 +64,10 @@ public class onClickThreadActivity extends AppCompatActivity {
                             Log.d("TAG", "onSuccess: user comment has been stored"+ userID);
                         }
                     });
-                    startActivity(new Intent(onClickThreadActivity.this, HomeActivity.class));
+                    startActivity(new Intent(ThreadDetailsActivity.this, HomeActivity.class));
                 }
                 else {
-                    Toast.makeText(onClickThreadActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ThreadDetailsActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
                 }
             }
         });

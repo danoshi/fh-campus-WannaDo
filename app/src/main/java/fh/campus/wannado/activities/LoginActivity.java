@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import fh.campus.wannado.R;
 
 public class LoginActivity extends AppCompatActivity {
 

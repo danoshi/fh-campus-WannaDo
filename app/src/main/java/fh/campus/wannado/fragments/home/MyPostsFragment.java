@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.fragments.home;
 
 
 import android.os.Bundle;
@@ -17,10 +17,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-import fh.campus.wannado.collections.users.PostCollection;
-import fh.campus.wannado.collections.users.PostDocument;
+import fh.campus.wannado.fragments.home.adapters.PostDocumentAdapter;
+import fh.campus.wannado.collections.post.PostCollection;
+import fh.campus.wannado.collections.post.PostDocument;
 import fh.campus.wannado.databinding.FragmentMypostsBinding;
-import fh.campus.wannado.databinding.FragmentProfileBinding;
 
 public class MyPostsFragment extends Fragment {
 
@@ -46,8 +46,8 @@ public class MyPostsFragment extends Fragment {
                     items.add(postDocument);
                     RecyclerView recyclerView = binding.myMessagesRecyclerview;
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    Adapter adapter  = new Adapter(getContext(), items);
-                    recyclerView.setAdapter(adapter);
+                    PostDocumentAdapter postDocumentAdapter = new PostDocumentAdapter(getContext(), items);
+                    recyclerView.setAdapter(postDocumentAdapter);
                 }
             }
         });

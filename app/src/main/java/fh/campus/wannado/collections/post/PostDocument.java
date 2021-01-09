@@ -1,4 +1,4 @@
-package fh.campus.wannado.collections.users;
+package fh.campus.wannado.collections.post;
 
 import java.io.Serializable;
 

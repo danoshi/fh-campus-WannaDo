@@ -1,6 +1,5 @@
-package fh.campus.wannado;
+package fh.campus.wannado.fragments.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-import fh.campus.wannado.collections.users.PostCollection;
-import fh.campus.wannado.collections.users.PostDocument;
+import fh.campus.wannado.fragments.home.adapters.PostDocumentAdapter;
+import fh.campus.wannado.collections.post.PostCollection;
+import fh.campus.wannado.collections.post.PostDocument;
 import fh.campus.wannado.databinding.SearchFragmentBinding;
 
 public class SearchFragment  extends Fragment {
 
     private SearchFragmentBinding binding;
-    private Adapter adapter;
+    private PostDocumentAdapter postDocumentAdapter;
     ArrayList<PostDocument> items;
 
 
@@ -39,13 +38,7 @@ public class SearchFragment  extends Fragment {
     }
 
     private void clickCardView(){
-        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(getActivity(), onClickThreadActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
 
@@ -58,8 +51,8 @@ public class SearchFragment  extends Fragment {
                     items.add(postDocument);
                     RecyclerView recyclerView = binding.postsRecyclerview;
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    Adapter adapter = new Adapter(getContext(), items);
-                    recyclerView.setAdapter(adapter);
+                    PostDocumentAdapter postDocumentAdapter = new PostDocumentAdapter(getContext(), items);
+                    recyclerView.setAdapter(postDocumentAdapter);
                 }
             }
         });

@@ -1,4 +1,4 @@
-package fh.campus.wannado;
+package fh.campus.wannado.fragments.home;
 
 
 import android.app.Activity;
@@ -29,6 +29,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import fh.campus.wannado.activities.MainActivity;
 import fh.campus.wannado.collections.users.UsersCollection;
 import fh.campus.wannado.collections.users.UsersDocument;
 import fh.campus.wannado.databinding.FragmentProfileBinding;
