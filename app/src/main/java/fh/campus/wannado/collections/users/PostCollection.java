@@ -1,31 +1,34 @@
 package fh.campus.wannado.collections.users;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class PostCollection {
     private final static String COLLECTION_NAME = "thread";
-    public final static String USERNAME_FIELD = "username";
+    public final static String USERNAME_FIELD = "userID";
     public final static String TITLE_FIELD = "title";
     public final static String MESSAGE_FIELD = "message";
 
-    public static void getCurrentUser(OnCompleteListener<DocumentSnapshot> onCompleteListener){
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        getById(userId, onCompleteListener);
-    }
-    public static void getById(String userId, OnCompleteListener<DocumentSnapshot> onCompleteListener){
+
+    public static void getAllPosts(OnCompleteListener<QuerySnapshot> onCompleteListener){
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(userId);
-        documentReference.get().addOnCompleteListener(onCompleteListener);
+        firestore.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
-    public static PostDocument getUserMessage(DocumentSnapshot documentSnapshot){
+    public static PostDocument postOf(QueryDocumentSnapshot queryDocumentSnapshot){
         return PostDocument.builder()
-                .username(documentSnapshot.getString(USERNAME_FIELD))
-                .title(documentSnapshot.getString(TITLE_FIELD))
-                .message(documentSnapshot.getString(MESSAGE_FIELD))
+                .username(queryDocumentSnapshot.getString(USERNAME_FIELD))
+                .title(queryDocumentSnapshot.getString(TITLE_FIELD))
+                .message(queryDocumentSnapshot.getString(MESSAGE_FIELD))
                 .build();
+    }
+    public static void getCurrentUserPosts(OnCompleteListener<QuerySnapshot> onCompleteListener){
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        firestore.collection(COLLECTION_NAME).whereEqualTo("userID", userID).get().addOnCompleteListener(onCompleteListener);
     }
 }

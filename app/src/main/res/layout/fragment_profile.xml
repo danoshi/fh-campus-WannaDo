@@ -13,22 +13,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="-2dp"
         android:layout_marginTop="-1dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="0dp">
 
-
-        <RelativeLayout
-            android:id="@+id/loadingPanel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="gone"
-            tools:layout_editor_absoluteX="166dp"
-            tools:layout_editor_absoluteY="418dp">
-
-        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView2"
@@ -107,15 +96,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="408dp"
-            android:layout_marginBottom="732dp"
             android:text="Email not verified"
             android:textSize="20sp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/buttonResendCode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textUsername"
+            app:layout_constraintVertical_bias="0.895" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -169,11 +157,14 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonChangeProfile" />
 
         <ProgressBar
+            android:id="@+id/loadingPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            tools:layout_editor_absoluteX="166dp"
-            tools:layout_editor_absoluteY="474dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonResendCode"
@@ -181,16 +172,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="408dp"
-            android:layout_marginBottom="732dp"
+            android:layout_marginBottom="24dp"
             android:text="Verify now"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/buttonChangeProfile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

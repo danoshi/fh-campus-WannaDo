@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import fh.campus.wannado.databinding.FragmentAddpostsBinding;
 
@@ -68,8 +69,9 @@ public class AddPostsFragment extends Fragment {
             }
             else if (!(title.isEmpty() && message.isEmpty())){
                 userID = mFirebaseAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = firestore.collection("thread").document(userID);
+                DocumentReference documentReference = firestore.collection("thread").document();
                 Map<String, Object> thread = new HashMap<>();
+                thread.put("userID", userID);
                 thread.put("title", title);
                 thread.put("message", message);
                 documentReference.set(thread).addOnSuccessListener(new OnSuccessListener<Void>() {
