@@ -25,12 +25,15 @@ public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapte
     private List<PostDocument> postDocumentsFull;
     private final Context context;
 
-    public PostDocumentAdapter(Context context, List<PostDocument> data){
+
+    public PostDocumentAdapter(Context context, List<PostDocument> postDocuments){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        this.postDocuments = data;
+        this.postDocuments = postDocuments;
         postDocumentsFull = new ArrayList<>(postDocuments);
+
     }
+
 
     @NonNull
     @Override
@@ -95,6 +98,7 @@ public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapte
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
+
             postDocuments.clear();
             postDocuments.addAll((List)results.values);
             notifyDataSetChanged();

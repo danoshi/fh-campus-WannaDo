@@ -15,14 +15,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
+import fh.campus.wannado.databinding.HomeFragmentBinding;
 import fh.campus.wannado.fragments.home.adapters.PostDocumentAdapter;
 import fh.campus.wannado.collections.post.PostCollection;
 import fh.campus.wannado.collections.post.PostDocument;
-import fh.campus.wannado.databinding.SearchFragmentBinding;
 
-public class SearchFragment  extends Fragment {
+public class HomeFragment extends Fragment {
 
-    private SearchFragmentBinding binding;
+    private HomeFragmentBinding binding;
     private PostDocumentAdapter postDocumentAdapter;
     ArrayList<PostDocument> items;
 
@@ -31,7 +31,7 @@ public class SearchFragment  extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = SearchFragmentBinding.inflate(inflater, container, false);
+        binding = HomeFragmentBinding.inflate(inflater, container, false);
         initRecyclerView();
         clickCardView();
         return binding.getRoot();
@@ -57,4 +57,5 @@ public class SearchFragment  extends Fragment {
             }
         });
     }
+
 }

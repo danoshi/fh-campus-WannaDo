@@ -19,7 +19,7 @@ public class PostCollection {
     }
     public static PostDocument postOf(QueryDocumentSnapshot queryDocumentSnapshot){
         return PostDocument.builder()
-                .username(queryDocumentSnapshot.getString(USERNAME_FIELD))
+                .userID(queryDocumentSnapshot.getString(USERNAME_FIELD))
                 .title(queryDocumentSnapshot.getString(TITLE_FIELD))
                 .message(queryDocumentSnapshot.getString(MESSAGE_FIELD))
                 .build();
