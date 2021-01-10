@@ -23,6 +23,7 @@ public class ChatDocumentAdapter extends RecyclerView.Adapter<ChatDocumentAdapte
     private List<ChatDocument> chatDocuments;
     private final Context context;
 
+
     public ChatDocumentAdapter(List<ChatDocument> chatDocuments, Context context) {
         this.layoutInflater = LayoutInflater.from(context);
         this.chatDocuments = chatDocuments;
@@ -47,8 +48,10 @@ public class ChatDocumentAdapter extends RecyclerView.Adapter<ChatDocumentAdapte
         holder.username.setText(currentItem.getParticipantsID().get(0));
         holder.message.setText(currentItem.getLastMessage());
         holder.setOnClickListener(e -> {
+
             Intent intent;
             intent = new Intent(context, ChatDetailsActivity.class);
+            intent.putExtra("CHAT_ID", currentItem.getChatID());
             context.startActivity(intent);
         });
     }

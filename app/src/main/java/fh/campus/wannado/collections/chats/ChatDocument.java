@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatDocument {
+    private String chatID;
     private List<String> participantsID;
     private String lastMessage;
     private Timestamp lastMessageTime;
