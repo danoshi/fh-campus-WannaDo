@@ -15,20 +15,27 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import fh.campus.wannado.R;
+import fh.campus.wannado.collections.chats.ChatCollection;
+import fh.campus.wannado.collections.chats.ChatDocument;
+import fh.campus.wannado.collections.post.PostCollection;
+import fh.campus.wannado.collections.post.PostDocument;
 
 public class ThreadDetailsActivity extends AppCompatActivity {
 
-    TextView titleDb, MessageDb;
+    TextView titleDb, MessageDb, commentsFromDb;
     EditText comment;
     Button buttonComment;
     FirebaseAuth mFirebaseAuth;
     String userID;
     FirebaseFirestore  firestore;
+    ArrayList<PostDocument> items;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,19 @@ public class ThreadDetailsActivity extends AppCompatActivity {
         MessageDb = findViewById(R.id.textMessageFromDb);
         comment = findViewById(R.id.editTextComment);
         buttonComment = findViewById(R.id.buttonPostComment);
+        commentsFromDb = findViewById(R.id.textViewCommentsFromDb);
+
+        PostCollection.getCurrentUserPosts(task -> {
+            if(task.isSuccessful()){
+                for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                    PostDocument postDocument = PostCollection.postOf(queryDocumentSnapshot);
+                    items.add(postDocument);
+                    titleDb.setText(postDocument.getTitle());
+                    MessageDb.setText(postDocument.getMessage());
+                    //commentsFromDb.setText(postDocument.);
+                }
+            }
+        });
 
         buttonComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +91,6 @@ public class ThreadDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
-    }
-    private void setPostInfo(){
 
     }
 }
