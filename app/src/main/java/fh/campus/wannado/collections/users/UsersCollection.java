@@ -10,6 +10,7 @@ public class UsersCollection {
     private final static String COLLECTION_NAME = "users";
     public final static String EMAIL_FIELD = "email";
     public final static String USERNAME_FIELD = "username";
+
     public static void getCurrentUser(OnCompleteListener<DocumentSnapshot> onCompleteListener){
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getById(userId, onCompleteListener);
