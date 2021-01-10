@@ -60,6 +60,7 @@ public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapte
         holder.setOnClickListener(e -> {
             Intent intent;
             intent = new Intent(context, ThreadDetailsActivity.class);
+            intent.putExtra("THREAD", currentItem);
             context.startActivity(intent);
         });
     }

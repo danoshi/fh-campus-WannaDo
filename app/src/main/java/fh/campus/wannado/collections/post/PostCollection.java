@@ -17,9 +17,11 @@ public class PostCollection {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         firestore.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
+
     public static PostDocument postOf(QueryDocumentSnapshot queryDocumentSnapshot){
         return PostDocument.builder()
                 .userID(queryDocumentSnapshot.getString(USERNAME_FIELD))
+                .threadID(queryDocumentSnapshot.getId())
                 .title(queryDocumentSnapshot.getString(TITLE_FIELD))
                 .message(queryDocumentSnapshot.getString(MESSAGE_FIELD))
                 .build();

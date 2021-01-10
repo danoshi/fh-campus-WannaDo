@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                                         .addOnFailureListener(e -> Log.d(TAG, "onFailure: Email not sent" + e.getMessage()));
 
                                 userID = mFirebaseAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = firestore.collection("users").document(userID);
+                                DocumentReference documentReference = firestore.collection("users").document();
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("username", uname);
                                 user.put("email", email);

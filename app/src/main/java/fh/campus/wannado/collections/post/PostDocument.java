@@ -12,5 +12,5 @@ public class PostDocument implements Serializable {
     private final String userID;
     private final String title;
     private final String message;
-
+    private final String threadID;
 }
