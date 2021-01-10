@@ -1,5 +1,6 @@
 package fh.campus.wannado.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import fh.campus.wannado.R;
+import fh.campus.wannado.collections.chats.ChatCollection;
 import fh.campus.wannado.collections.comment.CommentCollection;
 import fh.campus.wannado.collections.comment.CommentDocument;
 import fh.campus.wannado.collections.post.PostDocument;
@@ -59,12 +61,12 @@ public class ThreadDetailsActivity extends AppCompatActivity {
 
     }
 
-    public void setComments(String comments){
+    public void setComments(String comments) {
         commentsFromDb.setText(comments);
     }
 
 
-    public void postComment(){
+    public void postComment() {
         String insertedComment = comment.getText().toString();
         if (insertedComment.isEmpty()) {
             comment.setError("Please enter an comment");
@@ -81,8 +83,28 @@ public class ThreadDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void setStartChatButton(){
+    public void setStartChatButton() {
+//        ChatCollection.getChatWithUser(task -> {
+//            if (task.isSuccessful() && !task.getResult().isEmpty()) {
+//                    String chatID = task.getResult().getDocuments().get(0).getId();
+//                    Intent intent;
+//                    intent = new Intent(this, ChatDetailsActivity.class);
+//                    intent.putExtra("CHAT_ID", chatID);
+//                    startActivity(intent);
+//            }else{
+//                startNewChat();
+//            }
+//        }, postDocument.getUserID());
+        startNewChat();
+    }
 
+    private void startNewChat() {
+        userID = mFirebaseAuth.getCurrentUser().getUid();
+        String chatID = ChatCollection.createNewChat(userID, postDocument.getUserID());
+        Intent intent;
+        intent = new Intent(this, ChatDetailsActivity.class);
+        intent.putExtra("CHAT_ID", chatID);
+        startActivity(intent);
     }
 
 }

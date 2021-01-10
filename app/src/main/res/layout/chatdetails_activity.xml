@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messages_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="684dp"
+            android:background="#f0f0f0" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/text_bar"
+                android:layout_width="318dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:iconifiedByDefault="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_button"
+                android:text="Send" />
+
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>

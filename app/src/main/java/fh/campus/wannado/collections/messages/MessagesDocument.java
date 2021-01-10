@@ -2,12 +2,11 @@ package fh.campus.wannado.collections.messages;
 
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Getter
-@Builder
+@Data
+@AllArgsConstructor
 public class MessagesDocument {
-    private String chatID;
     private List<Message> messages;
 }
