@@ -1,7 +1,4 @@
-package fh.campus.wannado;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package fh.campus.wannado.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +9,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import fh.campus.wannado.R;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
@@ -80,11 +83,16 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
-                                Toast.makeText(MainActivity.this, "SignUp Unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                             else {
+                                FirebaseUser fuser = mFirebaseAuth.getCurrentUser();
+                                fuser.sendEmailVerification()
+                                        .addOnSuccessListener(e -> Toast.makeText(MainActivity.this, "Verification email has been sent", Toast.LENGTH_SHORT).show())
+                                        .addOnFailureListener(e -> Log.d(TAG, "onFailure: Email not sent" + e.getMessage()));
+
                                 userID = mFirebaseAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = firestore.collection("users").document(userID);
+                                DocumentReference documentReference = firestore.collection("users").document();
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("username", uname);
                                 user.put("email", email);
@@ -105,12 +113,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        tvSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
-            }
+        tvSignIn.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
         });
     }
 
