@@ -1,6 +1,7 @@
 package fh.campus.wannado.fragments.home.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,24 +17,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fh.campus.wannado.R;
+import fh.campus.wannado.activities.HomeActivity;
+import fh.campus.wannado.activities.ThreadDetailsActivity;
 import fh.campus.wannado.collections.post.PostDocument;
+import fh.campus.wannado.fragments.home.filters.PostDocumentFilter;
 
 public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapter.ViewHolder> implements Filterable {
 
-    private LayoutInflater layoutInflater;
+    private final LayoutInflater layoutInflater;
     private List<PostDocument> postDocuments;
-    private List<PostDocument> postDocumentsFull;
     private final Context context;
+    private final PostDocumentFilter filter;
 
 
     public PostDocumentAdapter(Context context, List<PostDocument> postDocuments){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.postDocuments = postDocuments;
-        postDocumentsFull = new ArrayList<>(postDocuments);
-
+        this.filter = new PostDocumentFilter(postDocuments, this);
     }
 
+    public void setList(List<PostDocument> list) {
+        this.postDocuments = list;
+    }
+
+    public void filterList(String text) {
+        filter.filter(text);
+    }
 
     @NonNull
     @Override
@@ -47,7 +57,11 @@ public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapte
         PostDocument currentItem = postDocuments.get(position);
         holder.textTitle.setText(currentItem.getTitle());
         holder.textDescription.setText(currentItem.getMessage());
-        holder.setOnClickListener(e -> Toast.makeText(context, "Clicked on " + currentItem.getTitle(), Toast.LENGTH_SHORT).show());
+        holder.setOnClickListener(e -> {
+            Intent intent;
+            intent = new Intent(context, ThreadDetailsActivity.class);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -72,36 +86,7 @@ public class PostDocumentAdapter extends RecyclerView.Adapter<PostDocumentAdapte
 
     @Override
     public Filter getFilter() {
-        return postFilter;
+        return filter;
     }
-    private Filter postFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<PostDocument> filteredList = new ArrayList<>();
 
-            if(constraint == null || constraint.length() == 0){
-                filteredList.addAll(postDocumentsFull);
-            }
-            else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for(PostDocument item : postDocumentsFull){
-                    if(item.getTitle().toLowerCase().contains(filterPattern)){
-                        filteredList.add(item);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-
-            postDocuments.clear();
-            postDocuments.addAll((List)results.values);
-            notifyDataSetChanged();
-        }
-    };
 }

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ccc"
-    android:padding="10dp">
+    android:padding="10dp"
+
+    android:background="#f0f0f0">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -15,12 +16,14 @@
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:padding="5dp"
+            >
 
             <ImageView
                 android:id="@+id/imageView"

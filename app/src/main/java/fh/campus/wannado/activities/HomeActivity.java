@@ -31,11 +31,6 @@ import fh.campus.wannado.fragments.home.ProfileFragment;
 import fh.campus.wannado.fragments.home.HomeFragment;
 
 public class HomeActivity extends AppCompatActivity {
-
-    private PostDocumentAdapter postDocumentAdapter;
-    private List<PostDocument> postDocuments;
-    CardView cardView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
-        cardView = findViewById(R.id.cardView);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(HomeActivity.this, ThreadDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -86,39 +71,4 @@ public class HomeActivity extends AppCompatActivity {
             };
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.search_top);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                postDocuments = new ArrayList<>();
- //               PostCollection.getAllPosts(task -> {
- //                   if(task.isSuccessful()){
-  //                      for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-   //                         PostDocument postDocument = PostCollection.postOf(documentSnapshot);
-    //                        postDocuments.add(postDocument);
-                            postDocumentAdapter = new PostDocumentAdapter(getApplicationContext(), postDocuments);
-                            postDocumentAdapter.getFilter().filter(newText);
-      //                  }
-      //              }
-       //         });
-                return false;
-            }
-        });
-
-        return true;
-    }
 }
