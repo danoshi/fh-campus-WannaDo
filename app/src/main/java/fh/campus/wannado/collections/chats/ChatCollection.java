@@ -15,7 +15,7 @@ public class ChatCollection {
     public final static String TIMESTAMP_FIELD = "lastMessageTime";
 
     //// w onCompleteListener document.toObject(ChatDocument.class)
-    public void getUserChats(OnCompleteListener<QuerySnapshot> onCompleteListener) {
+    public static void getUserChats(OnCompleteListener<QuerySnapshot> onCompleteListener) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         firestore.collection(COLLECTION_NAME)
